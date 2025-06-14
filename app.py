@@ -79,8 +79,7 @@ caec = st.selectbox("CAEC (Consumption of alcohol)", ["Sometimes", "no"])
 mtrans = st.selectbox("MTRANS (Mode of Transportation)", ["Automobile", "Motorbike", "Public_Transportation", "Walking"])
 
 
-# Buat DataFrame dari input
-X = pd.DataFrame([inputs])
+
 
 # Encode fitur kategorikal
 categorical_cols = X.select_dtypes(include=['object']).columns
