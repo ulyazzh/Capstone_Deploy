@@ -98,9 +98,18 @@ st.json(inputs)
 
 if st.button("\U0001F52E Prediksi Obesitas"):
     yhat = model.predict(X)[0]
-    st.success(f"Hasil Prediksi: **{yhat}**")
+    
+    # Mengonversi hasil prediksi numerik menjadi nama kelas
+    if hasattr(model, "classes_"):
+        class_names = model.classes_
+        predicted_class = class_names[yhat]
+    else:
+        predicted_class = str(yhat)  # Jika tidak ada mapping kelas
+        
+    st.success(f"Hasil Prediksi: **{predicted_class}**")
+    
     if hasattr(model, "predict_proba"):
         probs = model.predict_proba(X)[0]
         st.markdown("**Probabilitas Kelas:**")
-        st.json(dict(zip(model.classes_, [float(p) for p in probs])))
+        st.json(dict(zip(class_names, [float(p) for p in probs])))
 
