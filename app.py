@@ -87,10 +87,11 @@ cols = st.columns(2)
 inputs["CAEC"] = cols[0].selectbox("Kebiasaan Konsumsi Alkohol", ["Sometimes", "no"])
 inputs["MTRANS"] = cols[1].selectbox("Transportasi Utama", ["Automobile", "Motorbike", "Public_Transportation", "Walking"])
 
-X = pd.DataFrame([inputs])
-categorical_cols = X.select_dtypes(include=['object']).columns
-for col in categorical_cols:
-    X[col] = X[col].astype('category').cat.codes
+
+x = pd.DataFrame([inputs])
+yhat = model.predict(x)[0]
+
+
 
 st.markdown("---")
 st.markdown("### \U0001F50E Ringkasan Input")
