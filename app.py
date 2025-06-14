@@ -99,62 +99,31 @@ st.json(inputs)
 if st.button("\U0001F52E Prediksi Obesitas"):
     yhat = model.predict(X)[0]
     
-    # Mengonversi hasil prediksi numerik menjadi nama kelas
+    # Mapping hasil prediksi ke nama kelas
     if hasattr(model, "classes_"):
         class_names = model.classes_
         predicted_class = class_names[yhat]
     else:
-        predicted_class = str(yhat)  # Jika tidak ada mapping kelas
-        
-    st.success(f"Hasil Prediksi: **{predicted_class}**")
+        predicted_class = str(yhat)
 
-# Mapping antara label numerik dan nama kelas
-class_mapping = {
-    0: 'Insufficient_Weight',
-    1: 'Normal_Weight',
-    2: 'Overweight_Level_I',
-    3: 'Overweight_Level_II',
-    4: 'Obesity_Type_I',
-    5: 'Obesity_Type_II'
-}
+    # Deskripsi hasil prediksi dalam Bahasa Indonesia
+    prediction_description = {
+        'Insufficient_Weight': "Berat badan anda kurang",
+        'Normal_Weight': "Berat badan anda Normal",
+        'Overweight_Level_I': "Anda Kelebihan berat badan level I",
+        'Overweight_Level_II': "Anda Kelebihan berat badan level II",
+        'Obesity_Type_I': "Anda mengalami Obesitas Tipe I",
+        'Obesity_Type_II': "Anda mengalami Obesitas Tipe II",
+        'Obesity_Type_III': "Anda mengalami Obesitas Tipe III"
+    }
 
-# Prediksi
-yhat = model.predict(X)[0]
+    result_text = prediction_description.get(predicted_class, f"Kelas tidak dikenali: {predicted_class}")
 
-# Konversi hasil prediksi menjadi nama kelas
-if hasattr(model, "classes_"):
-    predicted_class = model.classes_[yhat]
-else:
-    predicted_class = class_mapping.get(yhat, "Kelas tidak dikenali")
+    st.markdown("### 🧾 Hasil Prediksi")
+    st.success(f"**{result_text}**")
 
-st.success(f"Hasil Prediksi: **{predicted_class}**")
-    
+    # Jika model support probabilitas
     if hasattr(model, "predict_proba"):
         probs = model.predict_proba(X)[0]
         st.markdown("**Probabilitas Kelas:**")
         st.json(dict(zip(class_names, [float(p) for p in probs])))
-
-
-# Mapping dari hasil numerik ke deskripsi dalam Bahasa Indonesia
-prediction_description = {
-    0: "Berat badan anda kurang",
-    1: "Berat badan anda Normal",
-    2: "Anda Kelebihan berat badan level I",
-    3: "Anda Kelebihan berat badan level II",
-    4: "Anda mengalami Obesitas Tipe I",
-    5: "Anda mengalami Obesitas Tipe II",
-    6: "Anda mengalami Obesitas Tipe III"
-}
-
-# Menampilkan hasil dengan deskripsi
-st.markdown("### 🧾 Hasil Prediksi")
-if predicted_class in class_mapping.values():
-    numeric_label = list(class_mapping.keys())[list(class_mapping.values()).index(predicted_class)]
-else:
-    numeric_label = None
-
-if numeric_label in prediction_description:
-    st.success(f"**{prediction_description[numeric_label]}**")
-else:
-    st.warning("Kelas tidak dikenali.")
-
