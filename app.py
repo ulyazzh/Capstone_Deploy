@@ -97,6 +97,7 @@ st.markdown("### \U0001F50E Ringkasan Input")
 st.json(inputs)
 
 if st.button("🔮 Prediksi Obesitas"):
+    x = pd.DataFrame([inputs])
     yhat = model.predict(x)[0]
 
     label_mapping = {
