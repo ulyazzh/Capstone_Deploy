@@ -117,7 +117,7 @@ if st.button("\U0001F52E Prediksi Obesitas"):
         'Obesity_Type_III': "Anda mengalami Obesitas Tipe III"
     }
 
-    result_text = prediction_description.get(predicted_class, f"Kelas tidak dikenali: {predicted_class}")
+    result_text = prediction_description.get(predicted_class, f"Kategori: {predicted_class}")
 
     st.markdown("### 🧾 Hasil Prediksi")
     st.success(f"**{result_text}**")
