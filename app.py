@@ -134,5 +134,4 @@ st.success(f"Hasil Prediksi: **{predicted_class}**")
         st.markdown("**Probabilitas Kelas:**")
         st.json(dict(zip(class_names, [float(p) for p in probs])))
 
-st.write("Input Data:")
-st.write(X)
+
