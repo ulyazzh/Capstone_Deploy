@@ -119,28 +119,21 @@ if st.button("\U0001F52E Prediksi Obesitas"):
 
     result_text = prediction_description.get(predicted_class, f"Kategori: {predicted_class}")
 
+predict = 0  # contoh nilai prediksi
+
+if predict == 0:
+    print("Berat badan anda kurang")
+elif predict == 1:
+    print("Berat badan anda Normal")
+elif predict == 2:
+    print("Anda Kelebihan berat badan level I")
+# dan seterusnya...
+else:
+    print("Nilai prediksi tidak dikenali")
+
+
     st.markdown("### 🧾 Hasil Prediksi")
     st.success(f"**{result_text}**")
-
-import streamlit as st
-
-# List kategori berat badan
-kategori_berat_badan = [
-    "Berat badan anda kurang",
-    "Berat badan anda Normal",
-    "Anda Kelebihan berat badan level I",
-    "Anda Kelebihan berat badan level II",
-    "Anda mengalami Obesitas Tipe I",
-    "Anda mengalami Obesitas Tipe II",
-    "Anda mengalami Obesitas Tipe III"
-]
-
-st.title("Kategori Berat Badan")
-
-# Menampilkan list dengan nomor
-for i, kategori in enumerate(kategori_berat_badan):
-    st.write(f"{i}. {kategori}")
-
     
     # Jika model support probabilitas
     if hasattr(model, "predict_proba"):
