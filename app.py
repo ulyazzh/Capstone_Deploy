@@ -108,10 +108,31 @@ if st.button("\U0001F52E Prediksi Obesitas"):
         
     st.success(f"Hasil Prediksi: **{predicted_class}**")
 
+# Mapping antara label numerik dan nama kelas
+class_mapping = {
+    0: 'Insufficient_Weight',
+    1: 'Normal_Weight',
+    2: 'Overweight_Level_I',
+    3: 'Overweight_Level_II',
+    4: 'Obesity_Type_I',
+    5: 'Obesity_Type_II'
+}
+
 if hasattr(model, "classes_"):
     st.write("Classes:", model.classes_)
 else:
-    st.write("Model tidak memiliki atribut 'classes_'.")
+    st.write("Model tidak memiliki atribut 'classes_'. Menggunakan mapping manual.")
+
+# Prediksi
+yhat = model.predict(X)[0]
+
+# Konversi hasil prediksi menjadi nama kelas
+if hasattr(model, "classes_"):
+    predicted_class = model.classes_[yhat]
+else:
+    predicted_class = class_mapping.get(yhat, "Kelas tidak dikenali")
+
+st.success(f"Hasil Prediksi: **{predicted_class}**")
     
     if hasattr(model, "predict_proba"):
         probs = model.predict_proba(X)[0]
