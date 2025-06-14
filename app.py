@@ -122,8 +122,4 @@ if st.button("Prediksi Obesitas"):
     st.markdown("###Hasil Prediksi")
     st.success(f"{result_text}")
 
-    # Jika model support probabilitas
-    if hasattr(model, "predict_proba"):
-        probs = model.predict_proba(X)[0]
-        st.markdown("*Probabilitas Kelas:*")
-        st.json(dict(zip(class_names, [float(p) for p in probs])))
+
