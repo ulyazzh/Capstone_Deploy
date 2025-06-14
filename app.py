@@ -78,7 +78,25 @@ caec = st.selectbox("CAEC (Consumption of alcohol)", ["Sometimes", "no"])
 # MTRANS
 mtrans = st.selectbox("MTRANS (Mode of Transportation)", ["Automobile", "Motorbike", "Public_Transportation", "Walking"])
 
-# Tombol prediksi
-if st.button("Prediksi"):
-    # Proses prediksi
-    st.success("Prediksi berhasil!")
+
+# Buat DataFrame dari input
+   X = pd.DataFrame([inputs])
+
+   # Encode fitur kategorikal
+   categorical_cols = X.select_dtypes(include=['object']).columns
+   for col in categorical_cols:
+       X[col] = X[col].astype('category').cat.codes
+
+   st.subheader("Input untuk prediksi:")
+   st.json(inputs)
+
+   if st.button("Prediksi"):
+       yhat = model.predict(X)[0]
+       st.success(f"Prediksi berhasil! Prediksi obesitas: **{yhat}**")
+       if hasattr(model, "predict_proba"):
+           probs = model.predict_proba(X)[0]
+           st.write("Probabilitas per kelas:")
+           st.json(dict(zip(model.classes_, [float(p) for p in probs])))
+           
+
+
