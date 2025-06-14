@@ -7,13 +7,6 @@ import joblib
 st.set_page_config(page_title="Prediksi Obesitas", layout="centered")
 st.title("Prediksi Tingkat Obesitas")
 
-# Deskripsi singkat
-st.markdown(
-    """
-    Aplikasi ini memprediksi tingkat obesitas berdasarkan data yang dimasukkan.
-    """
-)
-
 # Load model
 @st.cache_data
 def load_model():
@@ -136,8 +129,8 @@ if uploaded:
 
     if st.button("Prediksi"):
         yhat = model.predict(X)[0]
-        st.success(f"Prediksi obesitas: *{yhat}*")
+        st.success(f"Prediksi obesitas: **{yhat}**")
         if hasattr(model, "predict_proba"):
             probs = model.predict_proba(X)[0]
             st.write("Probabilitas per kelas:")
-            st.json(dict(zip(model.classes_, [float(p) for p in probs])))
+            st.json(dict(zip(model.classes_, [float(p) for p in probs])))
