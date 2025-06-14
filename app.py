@@ -14,13 +14,7 @@ def load_model():
 
 model = load_model()
 
-# Upload file CSV
-uploaded = st.file_uploader("Upload file CSV data pasien", type=["csv"])
-if uploaded:
-    df = pd.read_csv(uploaded)
 
-    st.write("Data preview:")
-    st.dataframe(df.head())
 
     # Kolom yang digunakan saat training
     EXPECTED_FEATURES = [
