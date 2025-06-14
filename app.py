@@ -84,56 +84,23 @@ inputs["FAF"] = cols[0].number_input("Aktivitas Fisik (jam/minggu)", min_value=0
 inputs["TUE"] = cols[1].number_input("Waktu Hiburan Teknologi (jam)", min_value=0, step=1)
 
 cols = st.columns(2)
-inputs["CAEC"] = cols[0].selectbox("Kebiasaan Konsumsi Camilan", ["Sometimes", "no"])
+inputs["CAEC"] = cols[0].selectbox("Kebiasaan Konsumsi Alkohol", ["Sometimes", "no"])
 inputs["MTRANS"] = cols[1].selectbox("Transportasi Utama", ["Automobile", "Motorbike", "Public_Transportation", "Walking"])
 
-# Konversi ke dataframe
 X = pd.DataFrame([inputs])
-
-# Manual encoding (sama seperti saat training)
-mapping = {
-    "Gender": {"Female": 0, "Male": 1},
-    "FAVC": {"no": 0, "yes": 1},
-    "CALC": {"no": 0, "Sometimes": 1},
-    "SCC": {"no": 0, "Sometimes": 1},
-    "SMOKE": {"no": 0, "yes": 1},
-    "family_history_with_overweight": {"no": 0, "yes": 1},
-    "CAEC": {"no": 0, "Sometimes": 1},
-    "MTRANS": {
-        "Automobile": 0,
-        "Motorbike": 1,
-        "Public_Transportation": 2,
-        "Walking": 3
-    }
-}
-
-for col, enc in mapping.items():
-    X[col] = X[col].map(enc)
+categorical_cols = X.select_dtypes(include=['object']).columns
+for col in categorical_cols:
+    X[col] = X[col].astype('category').cat.codes
 
 st.markdown("---")
 st.markdown("### \U0001F50E Ringkasan Input")
 st.json(inputs)
 
-if st.button("🔮 Prediksi Obesitas"):
+if st.button("\U0001F52E Prediksi Obesitas"):
     yhat = model.predict(X)[0]
-
-    label_mapping = {
-        0: "Insufficient_Weight",
-        1: "Normal_Weight",
-        2: "Overweight_Level_I",
-        3: "Overweight_Level_II",
-        4: "Obesity_Type_I",
-        5: "Obesity_Type_II",
-        6: "Obesity_Type_III"
-    }
-
-    st.success(f"Hasil Prediksi: **{label_mapping[int(yhat)]}**")
-
+    st.success(f"Hasil Prediksi: **{yhat}**")
     if hasattr(model, "predict_proba"):
         probs = model.predict_proba(X)[0]
         st.markdown("**Probabilitas Kelas:**")
-        kelas_dan_probabilitas = {
-            label_mapping[int(cls)]: float(p)
-            for cls, p in zip(model.classes_, probs)
-        }
-        st.json(kelas_dan_probabilitas)
+        st.json(dict(zip(model.classes_, [float(p) for p in probs])))
+
