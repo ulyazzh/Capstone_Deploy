@@ -118,11 +118,6 @@ class_mapping = {
     5: 'Obesity_Type_II'
 }
 
-if hasattr(model, "classes_"):
-    st.write("Classes:", model.classes_)
-else:
-    st.write("Model tidak memiliki atribut 'classes_'. Menggunakan mapping manual.")
-
 # Prediksi
 yhat = model.predict(X)[0]
 
@@ -139,3 +134,5 @@ st.success(f"Hasil Prediksi: **{predicted_class}**")
         st.markdown("**Probabilitas Kelas:**")
         st.json(dict(zip(class_names, [float(p) for p in probs])))
 
+st.write("Input Data:")
+st.write(X)
