@@ -9,9 +9,6 @@ def local_css(file_name):
 
 local_css("style.css")
 
-# Set config halaman
-st.set_page_config(page_title="Prediksi Obesitas", layout="centered")
-st.title("Prediksi Tingkat Obesitas")
 
 # Deskripsi singkat
 st.markdown(
