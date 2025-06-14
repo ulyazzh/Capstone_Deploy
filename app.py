@@ -25,7 +25,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-st.title("Aplikasi Prediksi Tingkat Obesitas")
+st.title("\U0001F4CA Aplikasi Prediksi Tingkat Obesitas")
 st.markdown("""
 Gunakan aplikasi ini untuk memprediksi tingkat obesitas berdasarkan data pribadi dan kebiasaan hidup.
 Silakan unggah file CSV atau isi data secara manual.
@@ -39,14 +39,14 @@ def load_model():
 model = load_model()
 
 # Upload file CSV
-uploaded = st.file_uploader("Upload file CSV data pasien", type=["csv"])
+uploaded = st.file_uploader("\U0001F4C2 Upload file CSV data pasien", type=["csv"])
 if uploaded:
     df = pd.read_csv(uploaded)
     st.markdown("**Data Preview:**")
     st.dataframe(df.head(), use_container_width=True)
 
 st.markdown("---")
-st.subheader("Input Data Manual")
+st.subheader("\U0001F4DD Input Data Manual")
 
 EXPECTED_FEATURES = [
     'Age', 'Gender', 'Height', 'Weight', 'CALC', 'FAVC', 'FCVC', 'NCP', 'SCC',
@@ -93,10 +93,10 @@ for col in categorical_cols:
     X[col] = X[col].astype('category').cat.codes
 
 st.markdown("---")
-st.markdown("### Ringkasan Input")
+st.markdown("### \U0001F50E Ringkasan Input")
 st.json(inputs)
 
-if st.button("Prediksi Obesitas"):
+if st.button("\U0001F52E Prediksi Obesitas"):
     yhat = model.predict(X)[0]
     
     # Mapping hasil prediksi ke nama kelas
@@ -119,7 +119,7 @@ if st.button("Prediksi Obesitas"):
 
     result_text = prediction_description.get(predicted_class, f"Kelas tidak dikenali: {predicted_class}")
 
-    st.markdown("###Hasil Prediksi")
+    st.markdown("### 🧾 Hasil Prediksi")
     st.success(f"**{result_text}**")
 
     # Jika model support probabilitas
