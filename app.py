@@ -107,6 +107,11 @@ if st.button("\U0001F52E Prediksi Obesitas"):
         predicted_class = str(yhat)  # Jika tidak ada mapping kelas
         
     st.success(f"Hasil Prediksi: **{predicted_class}**")
+
+if hasattr(model, "classes_"):
+    st.write("Classes:", model.classes_)
+else:
+    st.write("Model tidak memiliki atribut 'classes_'.")
     
     if hasattr(model, "predict_proba"):
         probs = model.predict_proba(X)[0]
