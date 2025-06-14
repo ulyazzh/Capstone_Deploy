@@ -1,0 +1,9 @@
+.stTextInput > label {
+    font-weight: bold;
+}
+
+.stButton > button {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
