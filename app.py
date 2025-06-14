@@ -98,15 +98,15 @@ st.json(inputs)
 
 if st.button("\U0001F52E Prediksi Obesitas"):
     yhat = model.predict(X)[0]
-    
-    # Mapping hasil prediksi ke nama kelas
+
     if hasattr(model, "classes_"):
         class_names = model.classes_
         predicted_class = class_names[yhat]
     else:
         predicted_class = str(yhat)
 
-    # Deskripsi hasil prediksi dalam Bahasa Indonesia
+    predicted_class = predicted_class.strip()  # Bersihkan jika ada spasi/karakter tak terlihat
+
     prediction_description = {
         'Insufficient_Weight': "Berat badan anda kurang",
         'Normal_Weight': "Berat badan anda Normal",
@@ -119,18 +119,16 @@ if st.button("\U0001F52E Prediksi Obesitas"):
 
     result_text = prediction_description.get(predicted_class, f"Kategori: {predicted_class}")
 
-
     st.markdown("### 🧾 Hasil Prediksi")
     st.success(f"**{result_text}**")
 
-    
+    # Tambahan logika berdasarkan hasil prediksi
     if predicted_class == 'Obesity_Type_III':
         st.warning("⚠️ Anda berada pada tingkat obesitas yang paling serius. Disarankan untuk segera berkonsultasi dengan tenaga medis.")
     elif predicted_class == 'Insufficient_Weight':
         st.info("💡 Berat badan anda di bawah normal. Pastikan asupan nutrisi harian cukup dan seimbang.")
 
-    
-    # Jika model support probabilitas
+    # Menampilkan probabilitas jika model mendukung
     if hasattr(model, "predict_proba"):
         probs = model.predict_proba(X)[0]
         st.markdown("**Probabilitas Kelas:**")
