@@ -25,7 +25,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-st.title("plikasi Prediksi Tingkat Obesitas")
+st.title("Aplikasi Prediksi Tingkat Obesitas")
 st.markdown("""
 Gunakan aplikasi ini untuk memprediksi tingkat obesitas berdasarkan data pribadi dan kebiasaan hidup.
 Silakan unggah file CSV atau isi data secara manual.
