@@ -119,18 +119,16 @@ if st.button("\U0001F52E Prediksi Obesitas"):
 
     result_text = prediction_description.get(predicted_class, f"Kategori: {predicted_class}")
 
-    if predicted_class == 0:
-        f"Berat badan anda kurang"
-    elif predicted_class == 1:
-        f"Berat badan anda Normal"
-    elif predicted_class == 2:
-        f"Anda Kelebihan berat badan level I"
-    else:
-        f"Nilai prediksi tidak dikenali"
-
 
     st.markdown("### 🧾 Hasil Prediksi")
     st.success(f"**{result_text}**")
+
+    
+    if predicted_class == 'Obesity_Type_III':
+        st.warning("⚠️ Anda berada pada tingkat obesitas yang paling serius. Disarankan untuk segera berkonsultasi dengan tenaga medis.")
+    elif predicted_class == 'Insufficient_Weight':
+        st.info("💡 Berat badan anda di bawah normal. Pastikan asupan nutrisi harian cukup dan seimbang.")
+
     
     # Jika model support probabilitas
     if hasattr(model, "predict_proba"):
