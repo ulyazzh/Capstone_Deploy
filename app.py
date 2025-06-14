@@ -135,3 +135,26 @@ st.success(f"Hasil Prediksi: **{predicted_class}**")
         st.json(dict(zip(class_names, [float(p) for p in probs])))
 
 
+# Mapping dari hasil numerik ke deskripsi dalam Bahasa Indonesia
+prediction_description = {
+    0: "Berat badan anda kurang",
+    1: "Berat badan anda Normal",
+    2: "Anda Kelebihan berat badan level I",
+    3: "Anda Kelebihan berat badan level II",
+    4: "Anda mengalami Obesitas Tipe I",
+    5: "Anda mengalami Obesitas Tipe II",
+    6: "Anda mengalami Obesitas Tipe III"
+}
+
+# Menampilkan hasil dengan deskripsi
+st.markdown("### 🧾 Hasil Prediksi")
+if predicted_class in class_mapping.values():
+    numeric_label = list(class_mapping.keys())[list(class_mapping.values()).index(predicted_class)]
+else:
+    numeric_label = None
+
+if numeric_label in prediction_description:
+    st.success(f"**{prediction_description[numeric_label]}**")
+else:
+    st.warning("Kelas tidak dikenali.")
+
