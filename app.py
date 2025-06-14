@@ -96,24 +96,31 @@ st.markdown("---")
 st.markdown("### \U0001F50E Ringkasan Input")
 st.json(inputs)
 
-if st.button("\U0001F52E Prediksi Obesitas"):
-    yhat = model.predict(X)[0]
+if st.button("🔮 Prediksi Obesitas"):
+    yhat = model.predict(x)[0]
 
     label_mapping = {
-    0: "Insufficient_Weight",
-    1: "Normal_Weight",
-    2: "Overweight_Level_I",
-    3: "Overweight_Level_II",
-    4: "Obesity_Type_I",
-    5: "Obesity_Type_II",
-    6: "Obesity_Type_III"
-}
-st.success(f"Hasil Prediksi: **{label_mapping[yhat]}**")
+        0: "Insufficient_Weight",
+        1: "Normal_Weight",
+        2: "Overweight_Level_I",
+        3: "Overweight_Level_II",
+        4: "Obesity_Type_I",
+        5: "Obesity_Type_II",
+        6: "Obesity_Type_III"
+    }
 
-    
-    #st.success(f"Hasil Prediksi: **{yhat}**")
+    st.success(f"Hasil Prediksi: **{label_mapping[int(yhat)]}**")
+
+    # Menampilkan probabilitas tiap kelas (jika model mendukung)
     if hasattr(model, "predict_proba"):
-        probs = model.predict_proba(X)[0]
+        probs = model.predict_proba(x)[0]
         st.markdown("**Probabilitas Kelas:**")
-        st.json(dict(zip(model.classes_, [float(p) for p in probs])))
+
+        # Perbaikan: pastikan keys berupa int biasa, bukan numpy.int64
+        kelas_dan_probabilitas = {
+            label_mapping[int(cls)]: float(p)
+            for cls, p in zip(model.classes_, probs)
+        }
+
+        st.json(kelas_dan_probabilitas)
 
