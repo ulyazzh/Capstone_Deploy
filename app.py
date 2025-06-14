@@ -120,13 +120,13 @@ if st.button("\U0001F52E Prediksi Obesitas"):
     result_text = prediction_description.get(predicted_class, f"Kategori: {predicted_class}")
 
     if predicted_class == 0:
-        print("Berat badan anda kurang")
+        f"Berat badan anda kurang"
     elif predicted_class == 1:
-        print("Berat badan anda Normal")
+        f"Berat badan anda Normal"
     elif predicted_class == 2:
-        print("Anda Kelebihan berat badan level I")
+        f"Anda Kelebihan berat badan level I"
     else:
-        print("Nilai prediksi tidak dikenali")
+        f"Nilai prediksi tidak dikenali"
 
 
     st.markdown("### 🧾 Hasil Prediksi")
