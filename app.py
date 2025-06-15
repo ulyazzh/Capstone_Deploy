@@ -122,7 +122,7 @@ if st.button("Prediksi Obesitas"):
     st.markdown("### 🧾 Hasil Prediksi")
     st.success(f"{result_text}")
 
-   st.markdown("""
+    st.markdown("""
     Jika hasil anda:<br>
     0, maka berat badan anda kurang<br>
     1, Maka berat badan anda Normal<br>
