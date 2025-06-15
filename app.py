@@ -121,7 +121,7 @@ if st.button("Prediksi Obesitas"):
 
     st.markdown("### 🧾 Hasil Prediksi")
     st.success(f"{result_text}")
-
+    
     data = {
         "Hasil": [0, 1, 2, 3, 4, 5, 6],
         "Keterangan": [
@@ -137,7 +137,9 @@ if st.button("Prediksi Obesitas"):
     
     df = pd.DataFrame(data)
     
-    st.table(df)
+    # Reset index agar tidak tampil di Streamlit
+    st.table(df.style.hide(axis='index'))
+
 
 
 
