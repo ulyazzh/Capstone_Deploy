@@ -122,16 +122,23 @@ if st.button("Prediksi Obesitas"):
     st.markdown("### 🧾 Hasil Prediksi")
     st.success(f"{result_text}")
 
-    st.markdown("""
-    Jika hasil anda:<br>
-    0, maka berat badan anda kurang<br>
-    1, Maka berat badan anda Normal<br>
-    2, Maka anda kelebihan berat badan level I<br>
-    3, Maka anda Kelebihan berat badan level II<br>
-    4, Maka anda mengalami Obesitas Tipe I<br>
-    5, Maka anda mengalami Obesitas Tipe II<br>
-    6, Maka anda mengalami Obesitas Tipe III<br>
-    """, unsafe_allow_html=True)
+    data = {
+        "Hasil": [0, 1, 2, 3, 4, 5, 6],
+        "Keterangan": [
+            "Berat badan anda kurang",
+            "Berat badan anda normal",
+            "Kelebihan berat badan level I",
+            "Kelebihan berat badan level II",
+            "Obesitas Tipe I",
+            "Obesitas Tipe II",
+            "Obesitas Tipe III"
+        ]
+    }
+    
+    df = pd.DataFrame(data)
+    
+    st.table(df)
+
 
 
 
