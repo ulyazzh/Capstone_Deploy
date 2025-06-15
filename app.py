@@ -122,4 +122,15 @@ if st.button("Prediksi Obesitas"):
     st.markdown("### 🧾 Hasil Prediksi")
     st.success(f"{result_text}")
 
+    st.markdown("""
+    Jika hasil anda:
+    0, maka berat badan anda kurang
+    1, Maka berat badan anda Normal
+    2, Maka anda kelebihan berat badan level I
+    3, Maka anda Kelebihan berat badan level II
+    4, Maka anda mengalami Obesitas Tipe I
+    5, Maka anda mengalami Obesitas Tipe II
+    6, Maka anda mengalami Obesitas Tipe III
+    """)
+
 
