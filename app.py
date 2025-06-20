@@ -46,7 +46,7 @@ if uploaded:
     st.dataframe(df.head(), use_container_width=True)
 
 st.markdown("---")
-st.subheader("\U0001F4DD Input Data Manual")
+st.subheader("Input Data Manual")
 
 EXPECTED_FEATURES = [
     'Age', 'Gender', 'Height', 'Weight', 'CALC', 'FAVC', 'FCVC', 'NCP', 'SCC',
