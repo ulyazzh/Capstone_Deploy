@@ -85,7 +85,7 @@ inputs["TUE"] = cols[1].number_input("Waktu Hiburan Teknologi (jam)", min_value=
 
 cols = st.columns(2)
 inputs["CAEC"] = cols[0].selectbox("Kebiasaan Konsumsi Alkohol", ["Kadang-kadang", "Tidak"])
-inputs["MTRANS"] = cols[1].selectbox("Transportasi Utama", ["Automobile", "Motorbike", "Public_Transportation", "Walking"])
+inputs["MTRANS"] = cols[1].selectbox("Transportasi Utama", ["Mobil", "Motor", "Transportasi umum", "Jalan kaki"])
 
 X = pd.DataFrame([inputs])
 categorical_cols = X.select_dtypes(include=['object']).columns
