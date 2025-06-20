@@ -57,7 +57,7 @@ inputs = {}
 
 cols = st.columns(2)
 inputs["Age"] = cols[0].number_input("Usia", min_value=0, step=1)
-inputs["Gender"] = cols[1].selectbox("Jenis Kelamin", ["Male", "Female"])
+inputs["Gender"] = cols[1].selectbox("Jenis Kelamin", ["Laki-laki", "Perempuan"])
 
 cols = st.columns(2)
 inputs["Height"] = cols[0].number_input("Tinggi Badan (m)", min_value=0.0, step=0.01)
