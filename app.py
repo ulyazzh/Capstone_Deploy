@@ -64,27 +64,27 @@ inputs["Height"] = cols[0].number_input("Tinggi Badan (m)", min_value=0.0, step=
 inputs["Weight"] = cols[1].number_input("Berat Badan (kg)", min_value=0.0, step=0.01)
 
 cols = st.columns(2)
-inputs["CALC"] = cols[0].selectbox("Konsumsi Alkohol", ["Sometimes", "no"])
-inputs["FAVC"] = cols[1].selectbox("Konsumsi Makanan Tinggi Kalori", ["yes", "no"])
+inputs["CALC"] = cols[0].selectbox("Konsumsi Alkohol", ["Kadang-kadang", "Tidak"])
+inputs["FAVC"] = cols[1].selectbox("Konsumsi Makanan Tinggi Kalori", ["Iya", "Tidak"])
 
 cols = st.columns(2)
 inputs["FCVC"] = cols[0].number_input("Frekuensi Konsumsi Sayur", min_value=0, step=1)
 inputs["NCP"] = cols[1].number_input("Jumlah Makan Utama per Hari", min_value=0.0, step=0.1)
 
 cols = st.columns(2)
-inputs["SCC"] = cols[0].selectbox("Makan di Luar Waktu Makan", ["Sometimes", "no"])
-inputs["SMOKE"] = cols[1].selectbox("Merokok", ["yes", "no"])
+inputs["SCC"] = cols[0].selectbox("Makan di Luar Waktu Makan", ["Kadang-kadang", "Tidak"])
+inputs["SMOKE"] = cols[1].selectbox("Merokok", ["Iya", "Tidak"])
 
 cols = st.columns(2)
 inputs["CH2O"] = cols[0].number_input("Konsumsi Air per Hari (liter)", min_value=0.0, step=0.1)
-inputs["family_history_with_overweight"] = cols[1].selectbox("Riwayat Keluarga Obesitas", ["yes", "no"])
+inputs["family_history_with_overweight"] = cols[1].selectbox("Riwayat Keluarga Obesitas", ["Iya", "Tidak"])
 
 cols = st.columns(2)
 inputs["FAF"] = cols[0].number_input("Aktivitas Fisik (jam/minggu)", min_value=0.0, step=0.1)
 inputs["TUE"] = cols[1].number_input("Waktu Hiburan Teknologi (jam)", min_value=0, step=1)
 
 cols = st.columns(2)
-inputs["CAEC"] = cols[0].selectbox("Kebiasaan Konsumsi Alkohol", ["Sometimes", "no"])
+inputs["CAEC"] = cols[0].selectbox("Kebiasaan Konsumsi Alkohol", ["Kadang-kadang", "Tidak"])
 inputs["MTRANS"] = cols[1].selectbox("Transportasi Utama", ["Automobile", "Motorbike", "Public_Transportation", "Walking"])
 
 X = pd.DataFrame([inputs])
